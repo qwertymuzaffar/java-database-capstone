@@ -40,7 +40,7 @@ public class Admin {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false)
-    @NotNull
+    @NotNull(message = "username cannot be null")
     private String password;
 
     // 4. Constructor(s):
