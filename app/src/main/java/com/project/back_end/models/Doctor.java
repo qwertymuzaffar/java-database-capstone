@@ -92,6 +92,10 @@ public class Doctor {
     //      - The @ElementCollection annotation ensures that the list of time slots is stored as a separate collection in the database.
 
     @ElementCollection
+    @CollectionTable(
+            name = "doctor_available_times",
+            joinColumns = @JoinColumn(name = "doctor_id", nullable = false)
+    )
     private List<String> availableTimes;
 
     @Min(0)
