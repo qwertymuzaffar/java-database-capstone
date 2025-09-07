@@ -1,13 +1,10 @@
 package com.project.back_end.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
+import java.time.LocalDate;
 
 @Entity
 public class Patient {
@@ -84,10 +81,29 @@ public class Patient {
     @Size(max = 255)
     private String address;
 
+    @Past
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
+
+    @Size(max = 100)
+    @Column(name = "emergency_contact_name", length = 100)
+    private String emergencyContact;
+
+    @Pattern(regexp = "\\+?\\d{10,15}", message = "Phone must be 10–15 digits, optional +")
+    @Column(name = "emergency_contact_phone", length = 20)
+    private String emergencyContactPhone;
+
+    @Size(max = 100)
+    @Column(name = "insurance_provider", length = 100)
+    private String insuranceProvider;
+
+    @JsonIgnore
+    @Column(name = "internal_flag")
+    private Boolean internalFlag;
+
     // 7. Getters and Setters:
     //    - Standard getter and setter methods are provided for all fields: id, name, email, password, phone, and address.
     //    - These methods allow access and modification of the fields of the Patient class.
-
 
     public long getId() {
         return id;
@@ -113,6 +129,28 @@ public class Patient {
         return address;
     }
 
+    public @Past LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public @Size(max = 100) String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public @Pattern(regexp = "\\+?\\d{10,15}", message = "Phone must be 10–15 digits, optional +") String getEmergencyContactPhone() {
+        return emergencyContactPhone;
+    }
+
+    public @Size(max = 100) String getInsuranceProvider() {
+        return insuranceProvider;
+    }
+
+    public Boolean getInternalFlag() {
+        return internalFlag;
+    }
+
+    // Setters
+
     public void setName(@NotNull @Size(min = 3, max = 100) String name) {
         this.name = name;
     }
@@ -131,5 +169,25 @@ public class Patient {
 
     public void setAddress(@NotNull @Size(max = 255) String address) {
         this.address = address;
+    }
+
+    public void setDateOfBirth(@Past LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setEmergencyContact(@Size(max = 100) String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public void setEmergencyContactPhone(@Pattern(regexp = "\\+?\\d{10,15}", message = "Phone must be 10–15 digits, optional +") String emergencyContactPhone) {
+        this.emergencyContactPhone = emergencyContactPhone;
+    }
+
+    public void setInsuranceProvider(@Size(max = 100) String insuranceProvider) {
+        this.insuranceProvider = insuranceProvider;
+    }
+
+    public void setInternalFlag(Boolean internalFlag) {
+        this.internalFlag = internalFlag;
     }
 }

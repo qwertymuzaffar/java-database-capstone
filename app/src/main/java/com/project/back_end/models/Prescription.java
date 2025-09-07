@@ -3,6 +3,7 @@ package com.project.back_end.models;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -72,6 +73,12 @@ public class Prescription {
     @Size(max = 200)
     private String doctorNotes;
 
+    @Min(0)
+    private Integer refillCount;
+
+    @Size(max = 100)
+    private String pharmacyName;
+
     // 7. Constructors:
     //    - The class includes a no-argument constructor (default constructor)
     //    and a parameterized constructor that initializes the fields: patientName, medication, dosage, doctorNotes, and appointmentId.
@@ -117,6 +124,16 @@ public class Prescription {
         return doctorNotes;
     }
 
+    public @Min(0) Integer getRefillCount() {
+        return refillCount;
+    }
+
+    public @Size(max = 100) String getPharmacyName() {
+        return pharmacyName;
+    }
+
+    // Setters
+
     public void setPatientName(@NotNull @Size(min = 3, max = 100) String patientName) {
         this.patientName = patientName;
     }
@@ -135,5 +152,13 @@ public class Prescription {
 
     public void setDoctorNotes(@Size(max = 200) String doctorNotes) {
         this.doctorNotes = doctorNotes;
+    }
+
+    public void setPharmacyName(@Size(max = 100) String pharmacyName) {
+        this.pharmacyName = pharmacyName;
+    }
+
+    public void setRefillCount(@Min(0) Integer refillCount) {
+        this.refillCount = refillCount;
     }
 }

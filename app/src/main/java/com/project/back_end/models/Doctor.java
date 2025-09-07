@@ -2,11 +2,9 @@ package com.project.back_end.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -96,6 +94,21 @@ public class Doctor {
     @ElementCollection
     private List<String> availableTimes;
 
+    @Min(0)
+    @Max(60)
+    @Column(name = "years_of_experience")
+    private Integer yearsOfExperience;
+
+    @Size(max = 200)
+    @Column(name = "clinic_address", length = 200)
+    private String clinicAddress;
+
+    // Rating from 0.0 to 5.0 (1 decimal)
+    @Min(0)
+    @Max(5)
+    @Column(name = "rating", precision = 2, scale = 1)
+    private BigDecimal rating;
+
     // 8. Getters and Setters:
     //    - Standard getter and setter methods are provided for all fields: id, name, specialty, email, password, phone, and availableTimes.
 
@@ -127,6 +140,20 @@ public class Doctor {
         return availableTimes;
     }
 
+    public @Min(0) @Max(60) Integer getYearsOfExperience() {
+        return yearsOfExperience;
+    }
+
+    public @Size(max = 200) String getClinicAddress() {
+        return clinicAddress;
+    }
+
+    public @Min(0) @Max(5) BigDecimal getRating() {
+        return rating;
+    }
+
+    // Setters
+
     public void setName(@NotNull @Size(min = 3, max = 100) String name) {
         this.name = name;
     }
@@ -149,6 +176,18 @@ public class Doctor {
 
     public void setAvailableTimes(List<String> availableTimes) {
         this.availableTimes = availableTimes;
+    }
+
+    public void setRating(@Min(0) @Max(5) BigDecimal rating) {
+        this.rating = rating;
+    }
+
+    public void setClinicAddress(@Size(max = 200) String clinicAddress) {
+        this.clinicAddress = clinicAddress;
+    }
+
+    public void setYearsOfExperience(@Min(0) @Max(60) Integer yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
     }
 }
 

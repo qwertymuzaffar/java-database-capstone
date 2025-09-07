@@ -2,10 +2,7 @@ package com.project.back_end.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -119,6 +116,14 @@ public class Appointment {
         return appointmentTime != null ? appointmentTime.toLocalTime() : null;
     }
 
+    @Size(max = 200)
+    @Column(name = "reason_for_visit", length = 200)
+    private String reasonForVisit;
+
+    @Size(max = 500)
+    @Column(name = "notes", length = 500)
+    private String notes;
+
     // 9. Constructor(s):
     //    - A no-argument constructor is implicitly provided by JPA for entity creation.
     //    - A parameterized constructor can be added as needed to initialize fields.
@@ -153,6 +158,20 @@ public class Appointment {
         return status;
     }
 
+    public @NotNull(message = "Patient is required") Patient getPatient() {
+        return patient;
+    }
+
+    public @Size(max = 200) String getReasonForVisit() {
+        return reasonForVisit;
+    }
+
+    public @Size(max = 500) String getNotes() {
+        return notes;
+    }
+
+    // Setters
+
     public void setDoctor(@NotNull Doctor doctor) {
         this.doctor = doctor;
     }
@@ -163,6 +182,22 @@ public class Appointment {
 
     public void setStatus(@NotNull int status) {
         this.status = status;
+    }
+
+    public void setNotes(@Size(max = 500) String notes) {
+        this.notes = notes;
+    }
+
+    public void setReasonForVisit(@Size(max = 200) String reasonForVisit) {
+        this.reasonForVisit = reasonForVisit;
+    }
+
+    public void setStatus(@NotNull @Min(value = STATUS_SCHEDULED, message = "Invalid status") @Max(value = STATUS_COMPLETED, message = "Invalid status") Integer status) {
+        this.status = status;
+    }
+
+    public void setPatient(@NotNull(message = "Patient is required") Patient patient) {
+        this.patient = patient;
     }
 
     @Transient
