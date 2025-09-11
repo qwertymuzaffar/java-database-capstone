@@ -29,7 +29,7 @@ public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     // 2. 'doctor' field:
     //    - Type: private Doctor
@@ -141,7 +141,7 @@ public class Appointment {
     // 10. Getters and Setters:
     //    - Standard getter and setter methods are provided for accessing and modifying the fields: id, doctor, patient, appointmentTime, status, etc.
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

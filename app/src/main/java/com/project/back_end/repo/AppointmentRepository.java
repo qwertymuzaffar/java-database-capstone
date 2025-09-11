@@ -64,6 +64,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     @Query("DELETE FROM Appointment a WHERE a.doctor.id = :doctorId")
     public void deleteAllByDoctorId(Long doctorId);
 
+    @Modifying
+    @Transactional
+    int deleteByIdAndPatient_Id(Long id, Long patientId);
+
     //    - **findByPatientId**:
     //      - This method retrieves all appointments for a specific patient.
     //      - Return type: List<Appointment>
@@ -114,7 +118,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional
     @Query("UPDATE Appointment a set a.status = :status where a.id = :id")
-    public void updateStatus(int status, Long id);
+    public int updateStatus(int status, Long id);
 
     // 3. @Modifying and @Transactional annotations:
     //    - The @Modifying annotation is used to indicate that the method performs a modification operation (like DELETE or UPDATE).
