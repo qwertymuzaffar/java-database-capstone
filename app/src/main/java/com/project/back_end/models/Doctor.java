@@ -23,7 +23,7 @@ public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     // 2. 'name' field:
     //    - Type: private String
@@ -116,7 +116,7 @@ public class Doctor {
     // 8. Getters and Setters:
     //    - Standard getter and setter methods are provided for all fields: id, name, specialty, email, password, phone, and availableTimes.
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
