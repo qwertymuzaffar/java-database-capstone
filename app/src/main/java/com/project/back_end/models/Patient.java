@@ -22,7 +22,7 @@ public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     // 2. 'name' field:
     //    - Type: private String
@@ -105,6 +105,24 @@ public class Patient {
     //    - Standard getter and setter methods are provided for all fields: id, name, email, password, phone, and address.
     //    - These methods allow access and modification of the fields of the Patient class.
 
+
+    public Patient() {
+    }
+
+    public Patient(Long id, String name, String email, String password, String phone, String address, LocalDate dateOfBirth, String emergencyContact, String emergencyContactPhone, String insuranceProvider, Boolean internalFlag) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
+        this.dateOfBirth = dateOfBirth;
+        this.emergencyContact = emergencyContact;
+        this.emergencyContactPhone = emergencyContactPhone;
+        this.insuranceProvider = insuranceProvider;
+        this.internalFlag = internalFlag;
+    }
+
     public long getId() {
         return id;
     }
@@ -150,6 +168,9 @@ public class Patient {
     }
 
     // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setName(@NotNull @Size(min = 3, max = 100) String name) {
         this.name = name;

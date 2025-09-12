@@ -10,7 +10,7 @@ public class AppointmentDTO {
     //    - Description:
     //      - Represents the unique identifier for the appointment.
     //      - This is the primary key for identifying the appointment in the system.
-    private long id;
+    private Long id;
 
     // 2. 'doctorId' field:
     //    - Type: private Long

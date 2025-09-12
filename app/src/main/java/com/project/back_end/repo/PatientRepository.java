@@ -4,6 +4,8 @@ import com.project.back_end.models.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     // 1. Extend JpaRepository:
@@ -20,7 +22,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     //      - Return type: Patient
     //      - Parameters: String email
     public Patient findByEmail(String email);
-    public Patient findByEmailIgnoreCase(String email);
+    public Optional<Patient> findByEmailIgnoreCase(String email);
 
     //    - **findByEmailOrPhone**:
     //      - This method retrieves a Patient by either their email or phone number, allowing flexibility for the search.
