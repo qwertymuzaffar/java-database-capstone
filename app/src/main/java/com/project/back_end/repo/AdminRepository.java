@@ -4,6 +4,8 @@ import com.project.back_end.models.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
@@ -22,6 +24,15 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
     //      - It will return an Admin entity that matches the provided username.
     //      - If no Admin is found with the given username, it returns null.
     public Admin findByUserName(String userName);
+
+    boolean existsByUsernameOrEmail(String username, String email);
+    Optional<Admin> findByUsernameOrEmail(String username, String email);
+
+    Optional<Admin> findByUsername(String username);
+    Optional<Admin> findByEmail(String email);
+    boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
+
 
     // Example: public Admin findByUsername(String username);
 

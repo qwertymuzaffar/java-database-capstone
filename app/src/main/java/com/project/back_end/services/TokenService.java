@@ -1,5 +1,8 @@
 package com.project.back_end.services;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class TokenService {
 // 1. **@Component Annotation**
 // The @Component annotation marks this class as a Spring component, meaning Spring will manage it as a bean within its application context.

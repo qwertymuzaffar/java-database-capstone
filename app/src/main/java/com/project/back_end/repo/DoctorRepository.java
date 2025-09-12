@@ -51,6 +51,8 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     public List<Doctor> findBySpecialtyIgnoreCase(String specialty);
     public List<Doctor> findBySpecialtyIgnoreCaseOrderByNameAsc(String specialty);
 
+    boolean existsByEmail(String email);
+
     // 3. @Repository annotation:
     //    - The @Repository annotation marks this interface as a Spring Data JPA repository.
     //    - Spring Data JPA automatically implements this repository, providing the necessary CRUD functionality and custom queries defined in the interface.
