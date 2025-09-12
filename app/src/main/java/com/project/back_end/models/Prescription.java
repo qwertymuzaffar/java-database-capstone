@@ -133,6 +133,9 @@ public class Prescription {
     }
 
     // Setters
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public void setPatientName(@NotNull @Size(min = 3, max = 100) String patientName) {
         this.patientName = patientName;
