@@ -30,12 +30,8 @@ public class DashboardController {
 
     @GetMapping("/adminDashboard/{token}")
     public String adminDashboard(@PathVariable String token) {
-        String error = tokenService.validateToken(token, "admin");
-        if (error == null || error.isBlank()) {
-            return "admin/adminDashboard";
-        }
-
-        return "index";
+        boolean valid = tokenService.validateToken(token, "admin");
+        return valid ? "admin/adminDashboard" : "index";
     }
 
 
@@ -48,10 +44,7 @@ public class DashboardController {
 
     @GetMapping("/doctorDashboard/{token}")
     public String doctorDashboard(@PathVariable String token) {
-        String error = tokenService.validateToken(token, "doctor");
-        if (error == null || error.isBlank()) {
-            return "doctor/doctorDashboard";
-        }
-        return "index";
+        boolean valid = tokenService.validateToken(token, "doctor");
+        return valid ? "doctor/doctorDashboard" : "index";
     }
 }

@@ -23,7 +23,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     //      - This method retrieves a Doctor by their email.
     //      - Return type: Doctor
     //      - Parameters: String email
-    public Doctor findByEmail(String email);
+    public Optional<Doctor> findByEmail(String email);
     public Optional<Doctor> findByEmailIgnoreCase(String email);
 
     //    - **findByNameLike**:
