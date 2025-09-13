@@ -97,11 +97,16 @@ public class AppointmentService {
 
         // 3) Validate requested update (ownership, time policy, doctor availability, etc.)
         // Assume validateAppointment returns a non-empty error message when invalid, otherwise null/empty
-        String validationError = commonService.validateAppointment(appointment);
-        if (validationError != null && !validationError.isBlank()) {
-            resp.put("message", validationError);
-            return ResponseEntity.badRequest().body(resp);
+
+        Long appointmentId = appointment.getId();
+        LocalDateTime requestedTime = appointment.getAppointmentTime();
+
+        int validation = commonService.validateAppointment(appointmentId, requestedTime);
+        if (validation == 0) {
+            resp.put("message", "Requested slot is unavailable.");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(resp); // 409 is appropriate
         }
+
         // If your service returns boolean instead:
         // if (!service.validateAppointment(appointment)) { resp.put("message","Invalid appointment update."); return ResponseEntity.badRequest().body(resp); }
 

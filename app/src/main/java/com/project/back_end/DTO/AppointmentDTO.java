@@ -17,7 +17,7 @@ public class AppointmentDTO {
     //    - Description:
     //      - Represents the ID of the doctor associated with the appointment.
     //      - This is a simplified field, capturing only the ID of the doctor (not the full Doctor object).
-    private long doctorId;
+    private Long doctorId;
 
     // 3. 'doctorName' field:
     //    - Type: private String
@@ -31,7 +31,7 @@ public class AppointmentDTO {
     //    - Description:
     //      - Represents the ID of the patient associated with the appointment.
     //      - This is a simplified field, capturing only the ID of the patient (not the full Patient object).
-    private long patientId;
+    private Long patientId;
 
     // 5. 'patientName' field:
     //    - Type: private String
@@ -129,7 +129,7 @@ public class AppointmentDTO {
         return id;
     }
 
-    public long getDoctorId() {
+    public Long getDoctorId() {
         return doctorId;
     }
 
@@ -137,7 +137,7 @@ public class AppointmentDTO {
         return doctorName;
     }
 
-    public long getPatientId() {
+    public Long getPatientId() {
         return patientId;
     }
 
