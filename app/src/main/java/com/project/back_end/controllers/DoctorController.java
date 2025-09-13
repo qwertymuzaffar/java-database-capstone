@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@RestController
+@RequestMapping("${api.path}doctor")
 public class DoctorController {
 
     // 1. Set Up the Controller Class:
@@ -40,7 +42,7 @@ public class DoctorController {
     //    - First validates the token against the user type.
     //    - If the token is invalid, returns an error response; otherwise, returns the availability status for the doctor.
 
-    @GetMapping("/availability/{user}/{doctorId}/{date}/{token:.+}")
+    @GetMapping("/availability/{user}/{doctorId}/{date}/{token}")
     public ResponseEntity<Map<String, Object>> getDoctorAvailability(@PathVariable String user,
                                                                      @PathVariable Long doctorId,
                                                                      @PathVariable String date,
@@ -84,7 +86,7 @@ public class DoctorController {
     //    - Validates the token for the `"admin"` role before proceeding.
     //    - If the doctor already exists, returns a conflict response; otherwise, adds the doctor and returns a success message.
 
-    @PostMapping("/save/{token:.+}")
+    @PostMapping("/save/{token}")
     public ResponseEntity<Map<String, String>> saveDoctor(@PathVariable String token,
                                                           @Valid @RequestBody Doctor doctor) {
         String error = commonService.validateToken(token, "admin");
@@ -118,7 +120,7 @@ public class DoctorController {
     //    - Token must belong to an `"admin"`.
     //    - If the doctor exists, updates the record and returns success; otherwise, returns not found or error messages.
 
-    @PutMapping("/update/{token:.+}")
+    @PutMapping("/update/{token}")
     public ResponseEntity<Map<String, String>> updateDoctor(@PathVariable String token,
                                                             @Valid @RequestBody Doctor doctor) {
         String error = commonService.validateToken(token, "admin");
@@ -138,7 +140,7 @@ public class DoctorController {
     //    - Requires both doctor ID and an admin token as path variables.
     //    - If the doctor exists, deletes the record and returns a success message; otherwise, responds with a not found or error message.
 
-    @DeleteMapping("/{doctorId}/{token:.+}")
+    @DeleteMapping("/{doctorId}/{token}")
     public ResponseEntity<Map<String, String>> deleteDoctor(@PathVariable Long doctorId,
                                                             @PathVariable String token) {
         String error = commonService.validateToken(token, "admin");
