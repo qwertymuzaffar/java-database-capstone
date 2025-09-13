@@ -42,7 +42,7 @@ public class Prescription {
     //      - Represents the ID of the associated appointment where the prescription was given.
     //      - The @NotNull annotation ensures that the appointment ID is required for the prescription.
     @NotNull
-    private long appointmentId;
+    private Long appointmentId;
 
     // 4. 'medication' field:
     //    - Type: private String
@@ -86,7 +86,7 @@ public class Prescription {
     public Prescription() {
     }
 
-    public Prescription(String patientName, long appointmentId, String medication, String dosage, String doctorNotes) {
+    public Prescription(String patientName, Long appointmentId, String medication, String dosage, String doctorNotes) {
         this.patientName = patientName;
         this.appointmentId = appointmentId;
         this.medication = medication;
@@ -108,7 +108,7 @@ public class Prescription {
     }
 
     @NotNull
-    public long getAppointmentId() {
+    public Long getAppointmentId() {
         return appointmentId;
     }
 
@@ -141,7 +141,7 @@ public class Prescription {
         this.patientName = patientName;
     }
 
-    public void setAppointmentId(@NotNull long appointmentId) {
+    public void setAppointmentId(@NotNull Long appointmentId) {
         this.appointmentId = appointmentId;
     }
 
