@@ -37,9 +37,6 @@ public class PatientService {
     private AppointmentRepository appointmentRepository;
     private TokenService tokenService;
 
-    public PatientService() {
-    }
-
     public PatientService(
             PatientRepository patientRepository,
             AppointmentRepository appointmentRepository,

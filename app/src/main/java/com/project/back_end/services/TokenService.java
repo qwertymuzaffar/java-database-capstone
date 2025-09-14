@@ -27,10 +27,10 @@ public class TokenService {
     // allowing the service to interact with the database and validate users based on their role (admin, doctor, or patient).
     // Constructor injection ensures that the class is initialized with all required dependencies, promoting immutability and making the class testable.
 
-    private final AdminRepository adminRepository;
-    private final DoctorRepository doctorRepository;
-    private final PatientRepository patientRepository;
-    private final String jwtSecret; // configured in application properties: jwt.secret
+    private AdminRepository adminRepository;
+    private DoctorRepository doctorRepository;
+    private PatientRepository patientRepository;
+    private String jwtSecret; // configured in application properties: jwt.secret
 
 
     public TokenService(AdminRepository adminRepository,

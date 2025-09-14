@@ -2,6 +2,7 @@ package com.project.back_end.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -46,6 +47,10 @@ public class Admin {
     // 4. Constructor(s):
     //    - A no-argument constructor is implicitly provided, required by JPA for entity creation.
     //    - A parameterized constructor can be added as needed.
+
+    @NotNull
+    @Email
+    private String email;
 
     public Admin() {
     }

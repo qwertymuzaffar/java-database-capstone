@@ -33,10 +33,6 @@ public class DoctorService {
     private AppointmentRepository appointmentRepository;
     private TokenService tokenService;
 
-    public DoctorService() {
-
-    }
-
     public DoctorService(DoctorRepository doctorRepository,
                          AppointmentRepository appointmentRepository,
                          TokenService tokenService) {

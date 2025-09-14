@@ -23,14 +23,13 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
     //      - Parameter: String username
     //      - It will return an Admin entity that matches the provided username.
     //      - If no Admin is found with the given username, it returns null.
-    public Admin findByUserName(String userName);
+    Optional<Admin> findByUsername(String username);
+    boolean existsByUsername(String username);
 
     boolean existsByUsernameOrEmail(String username, String email);
     Optional<Admin> findByUsernameOrEmail(String username, String email);
 
-    Optional<Admin> findByUsername(String username);
     Optional<Admin> findByEmail(String email);
-    boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 
 

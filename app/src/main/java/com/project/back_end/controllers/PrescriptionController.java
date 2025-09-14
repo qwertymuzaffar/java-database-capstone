@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("${api.path}prescription")
+@RequestMapping("${api.path}" + "prescription")
 public class PrescriptionController {
     
     // 1. Set Up the Controller Class:
@@ -27,9 +27,9 @@ public class PrescriptionController {
     //    - Inject the shared `Service` class for token validation and role-based access control.
     //    - Inject `AppointmentService` to update appointment status after a prescription is issued.
 
-    private final PrescriptionService prescriptionService;
-    private final CommonService commonService; // token validation
-    private final AppointmentService appointmentService; // to update appointment status after issuing Rx
+    private PrescriptionService prescriptionService;
+    private CommonService commonService; // token validation
+    private AppointmentService appointmentService; // to update appointment status after issuing Rx
 
     private static final int STATUS_AFTER_PRESCRIPTION = 1;
 

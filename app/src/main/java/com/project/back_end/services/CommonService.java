@@ -300,7 +300,6 @@ public class CommonService {
 
     // ============================= helpers =============================
 
-
     private boolean notBlank(String s) {
         return s != null && !s.trim().isEmpty();
     }
@@ -313,11 +312,13 @@ public class CommonService {
         return false;
     }
 
+
     private boolean existsDoctorByEmail(String email) {
         try { if (doctorRepository.existsByEmail(email)) return true; } catch (Throwable ignored) {}
         try { return doctorRepository.findByEmailIgnoreCase(email).isPresent(); } catch (Throwable ignored) {}
         return false;
     }
+
 
     private boolean existsPatientByEmail(String email) {
         try { if (patientRepository.existsByEmail(email)) return true; } catch (Throwable ignored) {}

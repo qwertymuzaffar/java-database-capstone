@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("${api.path}doctor")
+@RequestMapping("${api.path}" + "doctor")
 public class DoctorController {
 
     // 1. Set Up the Controller Class:
@@ -27,8 +27,8 @@ public class DoctorController {
     //    - Inject `DoctorService` for handling the core logic related to doctors (e.g., CRUD operations, authentication).
     //    - Inject the shared `Service` class for general-purpose features like token validation and filtering.
 
-    private final DoctorService doctorService;
-    private final CommonService commonService;
+    private DoctorService doctorService;
+    private CommonService commonService;
 
 
     public DoctorController(DoctorService doctorService, CommonService commonService) {

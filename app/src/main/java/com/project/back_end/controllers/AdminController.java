@@ -3,7 +3,6 @@ package com.project.back_end.controllers;
 
 import com.project.back_end.models.Admin;
 import com.project.back_end.services.CommonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("${api.path}admin")
+@RequestMapping("/admin")
 public class AdminController {
 
     // 1. Set Up the Controller Class:
@@ -27,7 +26,7 @@ public class AdminController {
     //    - The service handles core logic related to admin validation and token checking.
     //    - This promotes cleaner code and separation of concerns between the controller and business logic layer.
 
-    private final CommonService commonService;
+    private CommonService commonService;
 
     public AdminController(CommonService commonService) {
         this.commonService = commonService;
